@@ -8,6 +8,7 @@ class Sorteo{
     }
 
     sortearNumeros() {
+        this.numerosSorteados = [];
         for (let i = 0; i < 6; i++) {
             let sorteo = (Math.round(Math.random() * 46));
             console.log(sorteo);
@@ -52,28 +53,29 @@ class Sorteo{
         // }
         switch(aciertos){
             case 3: 
-                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 35)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 35)} pesos`);
                 break;
             case 4: 
-                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 22)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 22)} pesos`);
                 break;
             case 5: 
-                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 10)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 10)} pesos`);
                 break;
             case 6: 
-                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 2)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 2)} pesos`);
                 break;
             default: 
-                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Seguí participando`);  
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Seguí participando`);  
         }
     }
 
     numerosGanadores(){
         return this.numerosSorteados.join("-");
+        
     }
 }
 // Creación de objetos de la clase sorteo
-let tradicional = new Sorteo("Quini tradicional", 600, 10000000);
+let tradicional = new Sorteo("Tradicional", 600, 10000000);
 console.log(tradicional);
 let laSegunda = new Sorteo("La segunda", 400, 8000000);
 console.log(laSegunda);
@@ -82,39 +84,18 @@ console.log(revancha);
 let siempreSale = new Sorteo("Siempre sale", 250, 4000000);
 console.log(siempreSale);
 
-// Declaracion de funciones para chequear los 6 numeros del usuario contra todos los numeros sorteados en los 4 sorteos
-function removerDuplicados(arr) {
-    let unico = [];
-    arr.forEach(elemento => {
-        if (!unico.includes(elemento)) {
-            unico.push(elemento);
-        }
-    });
-    return unico;
-}
-
-function aciertosTotales() {
-    let aciertos = 0;
-    for (let i = 0; i< numerosElegidos.length;i++) {
-        for (let j=0;j<sorteadosSinRepetir.length;j++) {
-            if (numerosElegidos[i] === sorteadosSinRepetir[j]) {
-                aciertos += 1;
-            }
-        }
-
-    }console.log(aciertos); 
-    if(aciertos === 6){
-        console.log("Felicidades");
-    }
-}
-
 let numerosElegidos= [];
 let numeros = document.getElementById("numerosUsuario");
 let numerosTradicional = document.getElementById("numerosDelTradicional");
 let numerosSegunda = document.getElementById("numerosDeLaSegunda");
 let numerosRevancha = document.getElementById("numerosDeLaRevancha");
 let numerosSiempreSale = document.getElementById("numerosDelSiempreSale");
-
+let numerosSeleccionados = document.getElementById("numerosSeleccionados");
+let contadorElegidos = 0;
+let botonSortear = document.getElementById("sortear");
+let botonReiniciar = document.getElementById("reiniciar");
+let seccionResultados = document.getElementById("resultados");
+seccionResultados.style.display = "none";
 
 // creando los numeros a elegir de forma dinámica
 
@@ -151,10 +132,34 @@ for(let i = 0; i < 47; i++){
 }
 
 let botonesNumero = document.querySelectorAll(".botonNumero");
-let contadorElegidos = 0;
-let botonSortear = document.getElementById("sortear");
-let botonReiniciar = document.getElementById("reiniciar");
 
+// Declaracion de funciones para chequear los 6 numeros del usuario contra todos los numeros sorteados en los 4 sorteos
+function removerDuplicados(arr) {
+    let unico = [];
+    arr.forEach(elemento => {
+        if (!unico.includes(elemento)) {
+            unico.push(elemento);
+        }
+    });
+    return unico;
+}
+
+function aciertosTotales() {
+    let aciertos = 0;
+    for (let i = 0; i< numerosElegidos.length;i++) {
+        for (let j=0;j<sorteadosSinRepetir.length;j++) {
+            if (numerosElegidos[i] === sorteadosSinRepetir[j]) {
+                aciertos += 1;
+            }
+        }
+
+    }console.log(aciertos); 
+    if(aciertos === 6){
+        console.log("Felicidades");
+    }
+}
+
+// Funcionamiento botones Reiniciar y Sortear
 botonReiniciar.onclick = ()=>{
     numerosElegidos = [];
     contadorElegidos=0;
@@ -162,33 +167,27 @@ botonReiniciar.onclick = ()=>{
     botonesNumero.forEach((elem)=>{
         elem.disabled=false;
     });
+    numerosTradicional.innerHTML="";
+    numerosSegunda.innerHTML="";
+    numerosRevancha.innerHTML="";
+    numerosSiempreSale.innerHTML="";
+    seccionResultados.style.display = "none";
 }
 
 botonSortear.onclick = ()=>{
     botonSortear.disabled = true;
+    numerosSeleccionados.innerHTML = `Tus numeros son ${numerosElegidos.join("-")}`;
     tradicional.sortearNumeros();
-    numerosTradicional.innerHTML=  `Los numeros son: ${tradicional.numerosGanadores()}, ${tradicional.cantidadAciertos()}`;
+    numerosTradicional.innerHTML=  `Los numeros sorteados fueron: ${tradicional.numerosGanadores()}, ${tradicional.cantidadAciertos()}`;
     laSegunda.sortearNumeros();
-    numerosSegunda.innerHTML=  `Los numeros son: ${laSegunda.numerosGanadores()}, ${laSegunda.cantidadAciertos()}`;
+    numerosSegunda.innerHTML=  `Los numeros sorteados fueron: ${laSegunda.numerosGanadores()}, ${laSegunda.cantidadAciertos()}`;
     revancha.sortearNumeros();
-    numerosRevancha.innerHTML=  `Los numeros son: ${revancha.numerosGanadores()}, ${revancha.cantidadAciertos()}`;
+    numerosRevancha.innerHTML=  `Los numeros sorteados fueron: ${revancha.numerosGanadores()}, ${revancha.cantidadAciertos()}`;
     siempreSale.sortearNumeros();
-    numerosSiempreSale.innerHTML=  `Los numeros son: ${siempreSale.numerosGanadores()}, ${siempreSale.cantidadAciertos()}`;
+    numerosSiempreSale.innerHTML=  `Los numeros sorteados fueron: ${siempreSale.numerosGanadores()}, ${siempreSale.cantidadAciertos()}`;
+    seccionResultados.style.display = "block";
 }
 
-
-
-
-
-// laSegunda.sortearNumeros();
-// console.log(laSegunda.numerosSorteados);
-// laSegunda.cantidadAciertos();
-// revancha.sortearNumeros();
-// console.log(revancha.numerosSorteados);
-// revancha.cantidadAciertos();
-// siempreSale.sortearNumeros();
-// console.log(siempreSale.numerosSorteados);
-// siempreSale.cantidadAciertos();
 
 // let todosSorteados = tradicional.numerosSorteados.concat(laSegunda.numerosSorteados).concat(revancha.numerosSorteados).concat(siempreSale.numerosSorteados);
 // console.log(todosSorteados);
