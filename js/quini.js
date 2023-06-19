@@ -4,6 +4,7 @@ class Sorteo{
         this.precio=precio;
         this.premio=premio;
         this.numerosSorteados=[];
+        
     }
 
     sortearNumeros() {
@@ -32,23 +33,43 @@ class Sorteo{
             }
     
         } 
-        console.log(`Tuviste ${aciertos} aciertos en sorteo ${this.name}`);
+        // console.log(`Tuviste ${aciertos} aciertos en sorteo ${this.name}`);
+        // switch(aciertos){
+        //     case 3: 
+        //         return(`Ganaste ${Math.round(this.premio / 35)} pesos`);
+        //         break;
+        //     case 4: 
+        //         return(`Ganaste ${Math.round(this.premio / 22)} pesos`);
+        //         break;
+        //     case 5: 
+        //         return(`Ganaste ${Math.round(this.premio / 10)} pesos`);
+        //         break;
+        //     case 6: 
+        //         return(`Ganaste ${Math.round(this.premio / 2)} pesos`);
+        //         break;
+        //     default: 
+        //         console.log(`Seguí participando`);  
+        // }
         switch(aciertos){
             case 3: 
-                console.log(`Ganaste ${Math.round(this.premio / 35)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 35)} pesos`);
                 break;
             case 4: 
-                console.log(`Ganaste ${Math.round(this.premio / 22)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 22)} pesos`);
                 break;
             case 5: 
-                console.log(`Ganaste ${Math.round(this.premio / 10)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 10)} pesos`);
                 break;
             case 6: 
-                console.log(`Ganaste ${Math.round(this.premio / 2)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Ganaste ${Math.round(this.premio / 2)} pesos`);
                 break;
             default: 
-                console.log(`Seguí participando`);  
+                return(`Tuviste ${aciertos} aciertos en sorteo ${this.name}. Seguí participando`);  
         }
+    }
+
+    numerosGanadores(){
+        return this.numerosSorteados.join("-");
     }
 }
 // Creación de objetos de la clase sorteo
@@ -86,12 +107,50 @@ function aciertosTotales() {
         console.log("Felicidades");
     }
 }
+
 let numerosElegidos= [];
 let numeros = document.getElementById("numerosUsuario");
 let numerosTradicional = document.getElementById("numerosDelTradicional");
+let numerosSegunda = document.getElementById("numerosDeLaSegunda");
+let numerosRevancha = document.getElementById("numerosDeLaRevancha");
+let numerosSiempreSale = document.getElementById("numerosDelSiempreSale");
 
 
 // creando los numeros a elegir de forma dinámica
+
+for(let i = 0; i < 47; i++){
+    let boton = document.createElement("input");
+    boton.type="button";
+    boton.className = "botonNumero";
+    boton.onclick = ()=>{
+        if(numerosElegidos.length < 6){
+            if(boton.value=="00"){
+                numerosElegidos.push(boton.value);
+                boton.disabled = true;
+                contadorElegidos += 1;
+            }else{
+                numerosElegidos.push(parseInt(boton.value));
+                boton.disabled = true;
+                contadorElegidos += 1;
+            }
+        }
+        
+        console.log(numerosElegidos);
+        if(contadorElegidos === 6){
+            botonSortear.disabled=false;
+            
+        }
+    }
+    if(i==0){
+        boton.value="00";
+    }else{
+        boton.value = i - 1;
+    }
+     
+    numeros.appendChild(boton);
+}
+
+let botonesNumero = document.querySelectorAll(".botonNumero");
 let contadorElegidos = 0;
 let botonSortear = document.getElementById("sortear");
 let botonReiniciar = document.getElementById("reiniciar");
@@ -106,40 +165,18 @@ botonReiniciar.onclick = ()=>{
 }
 
 botonSortear.onclick = ()=>{
+    botonSortear.disabled = true;
     tradicional.sortearNumeros();
-    let numerosGanadores = tradicional.numerosSorteados.join("-")
-    numerosTradicional.innerHTML=  `Los numeros son: ${numerosGanadores}`;
-    tradicional.cantidadAciertos();
+    numerosTradicional.innerHTML=  `Los numeros son: ${tradicional.numerosGanadores()}, ${tradicional.cantidadAciertos()}`;
+    laSegunda.sortearNumeros();
+    numerosSegunda.innerHTML=  `Los numeros son: ${laSegunda.numerosGanadores()}, ${laSegunda.cantidadAciertos()}`;
+    revancha.sortearNumeros();
+    numerosRevancha.innerHTML=  `Los numeros son: ${revancha.numerosGanadores()}, ${revancha.cantidadAciertos()}`;
+    siempreSale.sortearNumeros();
+    numerosSiempreSale.innerHTML=  `Los numeros son: ${siempreSale.numerosGanadores()}, ${siempreSale.cantidadAciertos()}`;
 }
 
-for(let i = 0; i < 47; i++){
-    let boton = document.createElement("input");
-    boton.type="button";
-    boton.className = "botonNumero";
-    boton.onclick = ()=>{
-        if(boton.value=="00"){
-            numerosElegidos.push(boton.value);
-        }else{
-            numerosElegidos.push(parseInt(boton.value));
-        }
-        console.log(numerosElegidos);
-        boton.disabled = true;
-        contadorElegidos += 1;
-        if(contadorElegidos === 6){
-            botonSortear.disabled=false;
-            
-        }
-    };
-    if(i==0){
-        boton.value="00";
-    }else{
-        boton.value = i - 1;
-    }
-     
-    numeros.appendChild(boton)
-}
 
-let botonesNumero = document.querySelectorAll(".botonNumero");
 
 
 
