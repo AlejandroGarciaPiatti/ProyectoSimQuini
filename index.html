@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
     <title>Document</title>
 </head>
 <body>
-    <main>
+    <header>
         <h1>Quini</h1>
-        <section>
+    </header>
+    <main>
+        <section class="tablero">
             <h2>Selecciona tus numeros</h2>
             <p>Elegí 6 numeros para participar</p>
             <div id="numerosUsuario">
                 
 
             </div>
-            <div>
+            <div class="botonesAccion">
                 <input id="reiniciar" type="button" value="Reiniciar">
                 <input id="sortear" type="button" value="Sortear" disabled>
             </div>
@@ -25,7 +28,7 @@
         </section>
         
         <section id="resultados">
-            <h2>Resultados</h2>
+            <h2>RESULTADOS</h2>
             <div>
                 <h3>NUMEROS ELEGIDOS</h3>
                 <p id="numerosSeleccionados">
@@ -59,7 +62,9 @@
             </div>
         </section>
     </main>
-    
+    <footer>
+        <h2>Quini</h2>
+    </footer>
     <script src="./js/quini.js"></script>
 </body>
 </html>

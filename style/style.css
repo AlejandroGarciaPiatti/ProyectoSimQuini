@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    background-color: #f2f4f3;
+}
+header{
+    background-color: #a9927d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #0a0908;
+    height: 70px;
+}
+footer{
+    background-color: #22333b;
+    border-top: 2px solid #a9927d;
+    color: #f2f4f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+}
+main{
+    background-color: #f2f4f3;
+    margin-bottom: 10px;
+}
+
+.tablero{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#numerosUsuario{
+    margin-top: 50px;
+    padding: 20px;
+    display: flex;
+    gap: px;
+    flex-wrap: wrap;
+}
+
+
+
+.botonNumero{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    font-size: 2rem;
+    color: #f2f4f3;
+    background-color: #22333b;
+    box-shadow: 4px 4px 8px 6px rgba(0,0,0,0.75);
+}
+.botonNumero:disabled{
+    background-color: #8a8a8a;
+    border: 1px solid red;
+}
+
+.botonesAccion input{
+    margin-top: 30px;
+    height: 30px;
+    width: 90px;
+    border-radius: 5%;
+}
+
+#resultados{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+#resultados h3, #resultados h2, #resultados p{
+    text-align: center;
+    padding: 10px;
+}
+
+.ganador{
+    color: #0e8814;
+}
+

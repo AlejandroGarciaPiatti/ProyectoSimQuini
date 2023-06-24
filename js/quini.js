@@ -34,35 +34,19 @@ class Sorteo{
             }
     
         } 
-        // console.log(`Tuviste ${aciertos} aciertos en sorteo ${this.name}`);
-        // switch(aciertos){
-        //     case 3: 
-        //         return(`Ganaste ${Math.round(this.premio / 35)} pesos`);
-        //         break;
-        //     case 4: 
-        //         return(`Ganaste ${Math.round(this.premio / 22)} pesos`);
-        //         break;
-        //     case 5: 
-        //         return(`Ganaste ${Math.round(this.premio / 10)} pesos`);
-        //         break;
-        //     case 6: 
-        //         return(`Ganaste ${Math.round(this.premio / 2)} pesos`);
-        //         break;
-        //     default: 
-        //         console.log(`Seguí participando`);  
-        // }
+
         switch(aciertos){
             case 3: 
-                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 35)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. <span class=ganador>Ganaste ${Math.round(this.premio / 35)} pesos</span>`);
                 break;
             case 4: 
-                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 22)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. <span class=ganador>Ganaste ${Math.round(this.premio / 22)} pesos</span>`);
                 break;
             case 5: 
-                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 10)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. <span class=ganador>Ganaste ${Math.round(this.premio / 10)} pesos</span>`);
                 break;
             case 6: 
-                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Ganaste ${Math.round(this.premio / 2)} pesos`);
+                return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. <span class=ganador>Ganaste ${Math.round(this.premio / 2)} pesos</span>`);
                 break;
             default: 
                 return(`Tuviste ${aciertos} aciertos en el sorteo ${this.name}. Seguí participando`);  
@@ -176,15 +160,15 @@ botonReiniciar.onclick = ()=>{
 
 botonSortear.onclick = ()=>{
     botonSortear.disabled = true;
-    numerosSeleccionados.innerHTML = `Tus numeros son ${numerosElegidos.join("-")}`;
+    numerosSeleccionados.innerHTML = `Tus numeros elegidos fueron: <b>${numerosElegidos.join("-")}</b>`;
     tradicional.sortearNumeros();
-    numerosTradicional.innerHTML=  `Los numeros sorteados fueron: ${tradicional.numerosGanadores()}, ${tradicional.cantidadAciertos()}`;
+    numerosTradicional.innerHTML=  `Los numeros sorteados fueron: <b>${tradicional.numerosGanadores()}</b>, ${tradicional.cantidadAciertos()}`;
     laSegunda.sortearNumeros();
-    numerosSegunda.innerHTML=  `Los numeros sorteados fueron: ${laSegunda.numerosGanadores()}, ${laSegunda.cantidadAciertos()}`;
+    numerosSegunda.innerHTML=  `Los numeros sorteados fueron: <b>${laSegunda.numerosGanadores()}</b>, ${laSegunda.cantidadAciertos()}`;
     revancha.sortearNumeros();
-    numerosRevancha.innerHTML=  `Los numeros sorteados fueron: ${revancha.numerosGanadores()}, ${revancha.cantidadAciertos()}`;
+    numerosRevancha.innerHTML=  `Los numeros sorteados fueron: <b>${revancha.numerosGanadores()}</b>, ${revancha.cantidadAciertos()}`;
     siempreSale.sortearNumeros();
-    numerosSiempreSale.innerHTML=  `Los numeros sorteados fueron: ${siempreSale.numerosGanadores()}, ${siempreSale.cantidadAciertos()}`;
+    numerosSiempreSale.innerHTML=  `Los numeros sorteados fueron: <b>${siempreSale.numerosGanadores()}</b>, ${siempreSale.cantidadAciertos()}`;
     seccionResultados.style.display = "block";
 }
 
