@@ -1,70 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Simulador de sorteo de quini 6" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <title>Quini6</title>
+  </head>
+  <body>
     <header>
-        <h1>Quini</h1>
+      <h1>Quini</h1>
     </header>
     <main>
-        <section class="tablero">
-            <h2>Selecciona tus numeros</h2>
-            <p>Elegí 6 numeros para participar</p>
-            <div id="numerosUsuario">
-                
+      <section class="tablero">
+        <h2>Selecciona tus numeros</h2>
+        <p>Elegí 6 numeros para participar</p>
+        <div id="numerosUsuario"></div>
+        <div class="botonesAccion">
+          <input id="reiniciar" type="button" value="Reiniciar" />
+          <input id="sortear" type="button" value="Sortear" disabled />
+        </div>
 
-            </div>
-            <div class="botonesAccion">
-                <input id="reiniciar" type="button" value="Reiniciar">
-                <input id="sortear" type="button" value="Sortear" disabled>
-            </div>
+        <div id="divUltimasJugadas">
+          <h2>Tus últimas 5 jugadas</h2>
+          <ul id="ultimasJugadas"></ul>
+          <input id="botonBorrarHistorial" type="button" value="Borrar Historial">
+        </div>
+      </section>
 
-
-        </section>
-        
-        <section id="resultados">
-            <h2>RESULTADOS</h2>
-            <div>
-                <h3>NUMEROS ELEGIDOS</h3>
-                <p id="numerosSeleccionados">
-
-                </p>
-            </div>
-            <div>
-                <h3>TRADICIONAL</h3>
-                <p id="numerosDelTradicional">
-
-                </p>
-
-            </div>
-            <div >
-                <h3>LA SEGUNDA</h3>
-                <p id="numerosDeLaSegunda">
-
-                </p>
-            </div>
-            <div >
-                <h3>REVANCHA</h3>
-                <p id="numerosDeLaRevancha">
-                    
-                </p>
-            </div>
-            <div>
-                <h3>SIEMPRE SALE</h3>
-                <p id="numerosDelSiempreSale">
-                    
-                </p>
-            </div>
-        </section>
+      <section id="resultados">
+        <h2>RESULTADOS</h2>
+        <div>
+          <h3>NUMEROS ELEGIDOS</h3>
+          <p id="numerosSeleccionados"></p>
+        </div>
+        <div>
+          <h3>TRADICIONAL</h3>
+          <p id="numerosDelTradicional"></p>
+        </div>
+        <div>
+          <h3>LA SEGUNDA</h3>
+          <p id="numerosDeLaSegunda"></p>
+        </div>
+        <div>
+          <h3>REVANCHA</h3>
+          <p id="numerosDeLaRevancha"></p>
+        </div>
+        <div>
+          <h3>SIEMPRE SALE</h3>
+          <p id="numerosDelSiempreSale"></p>
+        </div>
+      </section>
     </main>
     <footer>
-        <h2>Quini</h2>
+      <h2>Quini</h2>
     </footer>
     <script src="./js/quini.js"></script>
-</body>
+  </body>
 </html>
