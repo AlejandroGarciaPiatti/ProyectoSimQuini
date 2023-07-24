@@ -81,7 +81,7 @@ const pedirSorteos = async () => {
   try {
     const resp = await fetch("../JSON/sorteos.json");
     const data = await resp.json();
-    fetcheados = data.sorteos;
+    fetcheados = data;
 
     // Creación de objetos de la clase sorteo
     tradicional = new Sorteo(fetcheados[0].nombre, fetcheados[0].precio, fetcheados[0].premio);

@@ -1,6 +1,6 @@
-{"sorteos" : [
+[
     {"id" : 1, "nombre":"Tradicional", "precio" : 600, "premio" : 10000000, "numerosSorteados" : []},
     {"id" : 2, "nombre":"La segunda", "precio" : 400, "premio" : 8000000, "numerosSorteados" : []},
     {"id" : 3, "nombre":"Revancha", "precio" : 350, "premio" : 6000000, "numerosSorteados" : []},
     {"id" : 4, "nombre":"Siempre Sale", "precio" : 250, "premio" : 4000000, "numerosSorteados" : []}
-]}
+]
