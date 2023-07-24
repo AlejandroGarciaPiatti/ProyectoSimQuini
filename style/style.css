@@ -84,6 +84,10 @@ main{
 }
 
 #divUltimasJugadas{
-    display: none;
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    gap: 10px;
+    background-color: #8a8a8a;
+    border: 2px solid #22333b;
 }
-

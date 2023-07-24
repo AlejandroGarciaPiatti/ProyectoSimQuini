@@ -69,11 +69,32 @@ class Sorteo {
     return this.numerosSorteados.join("-");
   }
 }
-// Creación de objetos de la clase sorteo
-let tradicional = new Sorteo("Tradicional", 600, 10000000);
-let laSegunda = new Sorteo("La segunda", 400, 8000000);
-let revancha = new Sorteo("Revancha", 350, 6000000);
-let siempreSale = new Sorteo("Siempre sale", 250, 4000000);
+
+// Fetch de los sorteos 
+let fetcheados = [];
+let tradicional;
+let laSegunda;
+let revancha;
+let siempreSale;
+
+const pedirSorteos = async () => {
+  try {
+    const resp = await fetch("../JSON/sorteos.json");
+    const data = await resp.json();
+    fetcheados = data.sorteos;
+
+    // Creación de objetos de la clase sorteo
+    tradicional = new Sorteo(fetcheados[0].nombre, fetcheados[0].precio, fetcheados[0].premio);
+    laSegunda = new Sorteo(fetcheados[1].nombre, fetcheados[1].precio, fetcheados[1].premio);
+    revancha = new Sorteo(fetcheados[2].nombre, fetcheados[2].precio, fetcheados[2].premio);
+    siempreSale = new Sorteo(fetcheados[3].nombre, fetcheados[3].precio, fetcheados[3].premio);
+
+  } catch (error) {
+    console.error("Error recogiendo datos:", error);
+  }
+};
+// Llamado al JSON
+pedirSorteos();
 
 let numerosElegidos = [];
 let numeros = document.getElementById("numerosUsuario");
@@ -136,7 +157,6 @@ botonReiniciar.onclick = () => {
   numerosRevancha.innerHTML = "";
   numerosSiempreSale.innerHTML = "";
   seccionResultados.style.display = "none";
-  divContenedorUltimasJugadas.style.display = "none";
 };
 
 let arrayAlmacenados = [];
@@ -152,12 +172,44 @@ botonSortear.onclick = () => {
   )}</b>`;
   tradicional.sortearNumeros();
   numerosTradicional.innerHTML = `Los numeros sorteados fueron: <b>${tradicional.numerosGanadores()}</b>, ${tradicional.cantidadAciertos()}`;
+  Toastify({
+    text: `Sorteo tradicional: ${tradicional.numerosGanadores()}`,
+    duration: 3000,
+    style : {
+      background: "#d6d",
+      width: "400px"
+    }
+  }).showToast();
   laSegunda.sortearNumeros();
   numerosSegunda.innerHTML = `Los numeros sorteados fueron: <b>${laSegunda.numerosGanadores()}</b>, ${laSegunda.cantidadAciertos()}`;
+  Toastify({
+    text: `Sorteo La Segunda: ${laSegunda.numerosGanadores()}`,
+    duration: 4000,
+    style : {
+      background: "#66d",
+      width: "400px"
+    }
+  }).showToast();
   revancha.sortearNumeros();
   numerosRevancha.innerHTML = `Los numeros sorteados fueron: <b>${revancha.numerosGanadores()}</b>, ${revancha.cantidadAciertos()}`;
+  Toastify({
+    text: `Sorteo Revancha: ${revancha.numerosGanadores()}`,
+    duration: 5000,
+    style : {
+      background: "#6d6",
+      width: "400px"
+    }
+  }).showToast();
   siempreSale.sortearNumeros();
   numerosSiempreSale.innerHTML = `Los numeros sorteados fueron: <b>${siempreSale.numerosGanadores()}</b>, ${siempreSale.cantidadAciertos()}`;
+  Toastify({
+    text: `Sorteo Siempre Sale: ${siempreSale.numerosGanadores()}`,
+    duration: 6000,
+    style : {
+      background: "#d66",
+      width: "400px"
+    }
+  }).showToast();
   seccionResultados.style.display = "block";
 
   let fecha = new Date();
@@ -188,14 +240,31 @@ botonSortear.onclick = () => {
     item.innerHTML = `Números: ${elemento.numeros} jugado el día ${elemento.fecha} hs`;
     contenedorUltimasJugadas.appendChild(item);
   }
-  divContenedorUltimasJugadas.style.display = "block";
 };
+
+let botonHistorial = document.getElementById("botonHistorial");
+divContenedorUltimasJugadas.style.display = "none";
+
+botonHistorial.addEventListener("click", ()=>{
+  if(divContenedorUltimasJugadas.style.display == "flex"){
+      divContenedorUltimasJugadas.style.display = "none";
+  }else if(divContenedorUltimasJugadas.style.display == "none"){
+    divContenedorUltimasJugadas.style.display = "block";
+    divContenedorUltimasJugadas.style.display = "flex";
+    divContenedorUltimasJugadas.style.flexDirection = "column";
+    divContenedorUltimasJugadas.style.alignItems = "center";
+  }
+})
 
 let borrarHistorial = document.getElementById("botonBorrarHistorial");
 
 borrarHistorial.addEventListener("click", ()=>{
-    divContenedorUltimasJugadas.style.display = "none";
+    // divContenedorUltimasJugadas.style.display = "none";
     localStorage.removeItem("UltimasJugadas");
     arrayAlmacenados = [];
     almacenadosEnLs;
+    while (contenedorUltimasJugadas.firstChild) {
+      contenedorUltimasJugadas.removeChild(contenedorUltimasJugadas.lastChild);
+    }
+
 })
