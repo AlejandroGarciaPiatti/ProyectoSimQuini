@@ -79,7 +79,6 @@ let siempreSale;
 
 const pedirSorteos = async () => {
   try {
-    debugger
     const resp = await fetch("https://raw.githubusercontent.com/AlejandroGarciaPiatti/ProyectoSimQuini/main/JSON/sorteos.json");
     const data = await resp.json();
     fetcheados = data;
@@ -94,6 +93,7 @@ const pedirSorteos = async () => {
     console.error("Error recogiendo datos:", error);
   }
 };
+
 // Llamado al JSON
 pedirSorteos();
 
@@ -168,9 +168,7 @@ let contenedorUltimasJugadas = document.getElementById("ultimasJugadas");
 
 botonSortear.onclick = () => {
   botonSortear.disabled = true;
-  numerosSeleccionados.innerHTML = `Tus numeros elegidos fueron: <b>${numerosElegidos.join(
-    "-"
-  )}</b>`;
+  numerosSeleccionados.innerHTML = `Tus numeros elegidos fueron: <b>${numerosElegidos.join("-")}</b>`;
   tradicional.sortearNumeros();
   numerosTradicional.innerHTML = `Los numeros sorteados fueron: <b>${tradicional.numerosGanadores()}</b>, ${tradicional.cantidadAciertos()}`;
   Toastify({
@@ -260,7 +258,6 @@ botonHistorial.addEventListener("click", ()=>{
 let borrarHistorial = document.getElementById("botonBorrarHistorial");
 
 borrarHistorial.addEventListener("click", ()=>{
-    // divContenedorUltimasJugadas.style.display = "none";
     localStorage.removeItem("UltimasJugadas");
     arrayAlmacenados = [];
     almacenadosEnLs;
