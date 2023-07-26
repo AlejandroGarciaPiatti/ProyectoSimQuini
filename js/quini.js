@@ -79,6 +79,7 @@ let siempreSale;
 
 const pedirSorteos = async () => {
   try {
+    debugger;
     const resp = await fetch("../JSON/sorteos.json");
     const data = await resp.json();
     fetcheados = data;
