@@ -80,7 +80,7 @@ let siempreSale;
 const pedirSorteos = async () => {
   try {
     debugger
-    const resp = await fetch("https://github.com/AlejandroGarciaPiatti/ProyectoSimQuini/blob/main/JSON/sorteos.json");
+    const resp = await fetch("https://raw.githubusercontent.com/AlejandroGarciaPiatti/ProyectoSimQuini/main/JSON/sorteos.json");
     const data = await resp.json();
     fetcheados = data;
 
