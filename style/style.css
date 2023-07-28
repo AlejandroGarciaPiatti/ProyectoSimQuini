@@ -4,25 +4,39 @@
 }
 body{
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 10fr 1fr;
     background-color: #f2f4f3;
 }
 header{
-    background-color: #a9927d;
+    background-color: #fff601;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #0a0908;
     min-height: 70px;
 }
+
+header h1{
+    color: #fff601;
+}
+
+img{
+    height: 100%;
+    width: 150px;
+}
+
 footer{
-    background-color: #22333b;
+    background-color: #fff601;
     border-top: 2px solid #a9927d;
-    color: #f2f4f3;
+    color: #f2272a;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100px;
+}
+
+footer h2{
+    font-size: 2rem;
 }
 main{
     background-color: #f2f4f3;

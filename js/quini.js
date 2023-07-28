@@ -89,9 +89,17 @@ const pedirSorteos = async () => {
     revancha = new Sorteo(fetcheados[2].nombre, fetcheados[2].precio, fetcheados[2].premio);
     siempreSale = new Sorteo(fetcheados[3].nombre, fetcheados[3].precio, fetcheados[3].premio);
 
+// Implementamos sweet alert para manejar error en la respuesta del fetch
   } catch (error) {
-    console.error("Error recogiendo datos:", error);
-  }
+    Swal.fire({
+      title: 'Error en base de datos',
+      text: error,
+      icon: 'error',
+      confirmButtonText: 'Volver a intentar'
+    }).then((result) => {
+          pedirSorteos();
+        })
+    }
 };
 
 // Llamado al JSON
@@ -171,6 +179,7 @@ botonSortear.onclick = () => {
   numerosSeleccionados.innerHTML = `Tus numeros elegidos fueron: <b>${numerosElegidos.join("-")}</b>`;
   tradicional.sortearNumeros();
   numerosTradicional.innerHTML = `Los numeros sorteados fueron: <b>${tradicional.numerosGanadores()}</b>, ${tradicional.cantidadAciertos()}`;
+  // Implementamos Toastify
   Toastify({
     text: `Sorteo tradicional: ${tradicional.numerosGanadores()}`,
     duration: 3000,
